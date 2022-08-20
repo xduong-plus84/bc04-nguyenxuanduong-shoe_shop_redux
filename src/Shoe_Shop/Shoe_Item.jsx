@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Shoe_Detail from "./Shoe_Detail";
 import { connect } from "react-redux";
 import { detailAction } from "./redux/actions/detailAction";
+import { addAction } from "./redux/actions/addAction";
 
 class Shoe_Item extends Component {
   render() {
@@ -12,7 +13,7 @@ class Shoe_Item extends Component {
           <div className="row row-cols-3">
             {this.props.shoeList.map((item, index) => {
               return (
-                <div key={index} className="col mb-4">
+                <div key={index.toString() + item.id} className="col mb-4">
                   <div className="card h-100">
                     <img src={item.image} className="card-img-top" alt="..." />
                     <div className="card-body">
@@ -55,7 +56,8 @@ class Shoe_Item extends Component {
 let mapStateToProps = (state) => {
   // lấy dữ liệu về dưới dạng props
   return {
-    shoeList: state.shoeListReducer.shoeList,
+    shoeList: state.shoeShoptReducer.shoeList,
+    cart: state.shoeShoptReducer.cart,
   };
 };
 
@@ -64,6 +66,9 @@ let mapDispatchToProps = (dispatch) => {
   return {
     handleShowDetail: (id) => {
       dispatch(detailAction(id));
+    },
+    hanleAddToCart: (id, value) => {
+      dispatch(addAction(id, value));
     },
   };
 };

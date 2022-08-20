@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
-import { shoeDetailReducer } from "./detailShoe";
-import { shoeListReducer } from "./listShoeReducer";
+import { shoeShoptReducer } from "./shoeShopReducer";
 
 export let rootReducer__Shoe_shop_redux = combineReducers({
-  shoeListReducer: shoeListReducer,
-  shoeDetailReducer: shoeDetailReducer,
+  shoeShoptReducer: shoeShoptReducer,
 });

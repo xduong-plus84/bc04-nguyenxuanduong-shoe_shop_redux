@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./shoeItemDetail_style.module.css";
 import { connect } from "react-redux";
+import { addAction } from "./redux/actions/addAction";
 
 class Shoe_Detail extends Component {
   render() {
@@ -70,21 +71,18 @@ class Shoe_Detail extends Component {
 let mapStateToProps = (state) => {
   // lấy dữ liệu về dưới dạng props
   return {
-    shoeDetail: state.shoeDetailReducer.shoeDetail,
+    shoeDetail: state.shoeShoptReducer.shoeDetail,
   };
 };
 
-// let mapDispatchToProps = (dispatch) => {
-//   // đẩy dữ liệu lên store
-//   return {
-//     tangSoLuong: () => {
-//       let action = {
-//         // type: TANG_SO_LUONG,
-//       };
-//       dispatch(action);
-//     },
-//   };
-// };
+let mapDispatchToProps = (dispatch) => {
+  // đẩy dữ liệu lên store
+  return {
+    hanleAddToCart: (id, value) => {
+      dispatch(addAction(id, value));
+    },
+  };
+};
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Shoe_Detail);
-export default connect(mapStateToProps, null)(Shoe_Detail);
+export default connect(mapStateToProps, mapDispatchToProps)(Shoe_Detail);
